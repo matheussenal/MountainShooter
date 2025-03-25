@@ -6,13 +6,14 @@ from pygame.font import Font
 
 from code.Const import WIN_WIDTH, C_ORANGE, MENU_OPTION, C_WHITE, C_YELLOW
 
+
 class Menu:
     def __init__(self, window):
         self.window = window
         self.surf = pygame.image.load('./asset/MenuBg.png').convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
-    def run(self, ):
+    def run(self):
         menu_option = 0
         pygame.mixer_music.load('./asset/Menu.mp3')
         pygame.mixer_music.play(-1)
@@ -36,12 +37,12 @@ class Menu:
                     pygame.quit()  # Close window / fechar janela
                     quit()  # end pygame
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_DOWN: # DOWN KEY / TECLA PARA BAIXO
+                    if event.key == pygame.K_DOWN:  # DOWN KEY / TECLA PARA BAIXO
                         if menu_option < len(MENU_OPTION) - 1:
                             menu_option += 1
                         else:
                             menu_option = 0
-                    if event.key == pygame.K_UP: # UP KEY / TECLA PARA CIMA
+                    if event.key == pygame.K_UP:  # UP KEY / TECLA PARA CIMA
                         if menu_option > 0:
                             menu_option -= 1
                         else:
@@ -49,7 +50,7 @@ class Menu:
                     if event.key == pygame.K_RETURN:  # ENTER / TECLA ENTER
                         return MENU_OPTION[menu_option]
 
-    def menu_text(self, text_size: int, text: str, text_color:  tuple, text_center_pos: tuple):
+    def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(center=text_center_pos)
